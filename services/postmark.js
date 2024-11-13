@@ -1863,9 +1863,11 @@ var PostmarkService = /*#__PURE__*/ (function (_NotificationService) {
                           ? 6
                           : _context10.t0 === "customer.password_reset"
                           ? 7
-                          : _context10.t0 === "gift_card.created"
+                          : _context10.t0 === "custom.contact_us"
                           ? 8
-                          : 9;
+                          : _context10.t0 === "gift_card.created"
+                          ? 9
+                          : 10;
                       break;
                     case 3:
                       return _context10.abrupt(
@@ -1904,11 +1906,16 @@ var PostmarkService = /*#__PURE__*/ (function (_NotificationService) {
                     case 8:
                       return _context10.abrupt(
                         "return",
-                        this.giftCardData(eventData, attachmentGenerator)
+                        this.customContactUsData(eventData, attachmentGenerator)
                       );
                     case 9:
-                      return _context10.abrupt("return", eventData);
+                      return _context10.abrupt(
+                        "return",
+                        this.giftCardData(eventData, attachmentGenerator)
+                      );
                     case 10:
+                      return _context10.abrupt("return", eventData);
+                    case 11:
                     case "end":
                       return _context10.stop();
                   }
@@ -2778,6 +2785,12 @@ var PostmarkService = /*#__PURE__*/ (function (_NotificationService) {
     {
       key: "customerPasswordResetData",
       value: function customerPasswordResetData(data) {
+        return data;
+      },
+    },
+    {
+      key: "customContactUsData",
+      value: function customContactUsData(data) {
         return data;
       },
     },

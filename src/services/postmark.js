@@ -381,6 +381,8 @@ class PostmarkService extends NotificationService {
         return this.userPasswordResetData(eventData, attachmentGenerator);
       case "customer.password_reset":
         return this.customerPasswordResetData(eventData, attachmentGenerator);
+      case "custom.contact_us":
+        return this.customContactUsData(eventData, attachmentGenerator);
       case "gift_card.created":
         return this.giftCardData(eventData, attachmentGenerator);
       default:
@@ -781,6 +783,10 @@ class PostmarkService extends NotificationService {
   }
 
   customerPasswordResetData(data) {
+    return data;
+  }
+
+  customContactUsData(data) {
     return data;
   }
 

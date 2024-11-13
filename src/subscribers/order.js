@@ -14,6 +14,7 @@ class OrderSubscriber {
     this.notificationService_.subscribe("order.shipment_created", "postmark");
     this.notificationService_.subscribe("customer.created", "postmark");
     this.notificationService_.subscribe("customer.password_reset", "postmark");
+    this.notificationService_.subscribe("custom.contact_us", "postmark");
   }
 }
 

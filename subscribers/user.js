@@ -687,5 +687,32 @@ var UserSubscriber = /*#__PURE__*/ _createClass(function UserSubscriber(_ref) {
       };
     })()
   );
+  this.eventBus_.subscribe(
+    "custom.contact_us",
+    /*#__PURE__*/ (function () {
+      var _ref8 = _asyncToGenerator(
+        /*#__PURE__*/ _regeneratorRuntime().mark(function _callee7(data) {
+          return _regeneratorRuntime().wrap(function _callee7$(_context7) {
+            while (1)
+              switch ((_context7.prev = _context7.next)) {
+                case 0:
+                  _context7.next = 2;
+                  return _this.postmarkService_.sendNotification(
+                    "custom.contact_us",
+                    data,
+                    null
+                  );
+                case 2:
+                case "end":
+                  return _context7.stop();
+              }
+          }, _callee7);
+        })
+      );
+      return function (_x7) {
+        return _ref8.apply(this, arguments);
+      };
+    })()
+  );
 });
 var _default = (exports["default"] = UserSubscriber);

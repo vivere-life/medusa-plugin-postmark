@@ -1,6 +1,6 @@
 "use strict";
 
-function _instanceof(left, right) { if (right != null && typeof Symbol !== "undefined" && right[Symbol.hasInstance]) { return !!right[Symbol.hasInstance](left); } else { return left instanceof right; } }
+function _instanceof(n, e) { return null != e && "undefined" != typeof Symbol && e[Symbol.hasInstance] ? !!e[Symbol.hasInstance](n) : n instanceof e; }
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
@@ -10,33 +10,31 @@ var _luxon = require("luxon");
 var _medusaInterfaces = require("medusa-interfaces");
 var _typeorm = require("typeorm");
 var postmark = _interopRequireWildcard(require("postmark"));
-function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
-function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || _typeof(obj) !== "object" && typeof obj !== "function") { return { "default": obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj["default"] = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
-function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
-function _regeneratorRuntime() { "use strict"; /*! regenerator-runtime -- Copyright (c) 2014-present, Facebook, Inc. -- license (MIT): https://github.com/facebook/regenerator/blob/main/LICENSE */ _regeneratorRuntime = function _regeneratorRuntime() { return exports; }; var exports = {}, Op = Object.prototype, hasOwn = Op.hasOwnProperty, defineProperty = Object.defineProperty || function (obj, key, desc) { obj[key] = desc.value; }, $Symbol = "function" == typeof Symbol ? Symbol : {}, iteratorSymbol = $Symbol.iterator || "@@iterator", asyncIteratorSymbol = $Symbol.asyncIterator || "@@asyncIterator", toStringTagSymbol = $Symbol.toStringTag || "@@toStringTag"; function define(obj, key, value) { return Object.defineProperty(obj, key, { value: value, enumerable: !0, configurable: !0, writable: !0 }), obj[key]; } try { define({}, ""); } catch (err) { define = function define(obj, key, value) { return obj[key] = value; }; } function wrap(innerFn, outerFn, self, tryLocsList) { var protoGenerator = outerFn && _instanceof(outerFn.prototype, Generator) ? outerFn : Generator, generator = Object.create(protoGenerator.prototype), context = new Context(tryLocsList || []); return defineProperty(generator, "_invoke", { value: makeInvokeMethod(innerFn, self, context) }), generator; } function tryCatch(fn, obj, arg) { try { return { type: "normal", arg: fn.call(obj, arg) }; } catch (err) { return { type: "throw", arg: err }; } } exports.wrap = wrap; var ContinueSentinel = {}; function Generator() {} function GeneratorFunction() {} function GeneratorFunctionPrototype() {} var IteratorPrototype = {}; define(IteratorPrototype, iteratorSymbol, function () { return this; }); var getProto = Object.getPrototypeOf, NativeIteratorPrototype = getProto && getProto(getProto(values([]))); NativeIteratorPrototype && NativeIteratorPrototype !== Op && hasOwn.call(NativeIteratorPrototype, iteratorSymbol) && (IteratorPrototype = NativeIteratorPrototype); var Gp = GeneratorFunctionPrototype.prototype = Generator.prototype = Object.create(IteratorPrototype); function defineIteratorMethods(prototype) { ["next", "throw", "return"].forEach(function (method) { define(prototype, method, function (arg) { return this._invoke(method, arg); }); }); } function AsyncIterator(generator, PromiseImpl) { function invoke(method, arg, resolve, reject) { var record = tryCatch(generator[method], generator, arg); if ("throw" !== record.type) { var result = record.arg, value = result.value; return value && "object" == _typeof(value) && hasOwn.call(value, "__await") ? PromiseImpl.resolve(value.__await).then(function (value) { invoke("next", value, resolve, reject); }, function (err) { invoke("throw", err, resolve, reject); }) : PromiseImpl.resolve(value).then(function (unwrapped) { result.value = unwrapped, resolve(result); }, function (error) { return invoke("throw", error, resolve, reject); }); } reject(record.arg); } var previousPromise; defineProperty(this, "_invoke", { value: function value(method, arg) { function callInvokeWithMethodAndArg() { return new PromiseImpl(function (resolve, reject) { invoke(method, arg, resolve, reject); }); } return previousPromise = previousPromise ? previousPromise.then(callInvokeWithMethodAndArg, callInvokeWithMethodAndArg) : callInvokeWithMethodAndArg(); } }); } function makeInvokeMethod(innerFn, self, context) { var state = "suspendedStart"; return function (method, arg) { if ("executing" === state) throw new Error("Generator is already running"); if ("completed" === state) { if ("throw" === method) throw arg; return doneResult(); } for (context.method = method, context.arg = arg;;) { var delegate = context.delegate; if (delegate) { var delegateResult = maybeInvokeDelegate(delegate, context); if (delegateResult) { if (delegateResult === ContinueSentinel) continue; return delegateResult; } } if ("next" === context.method) context.sent = context._sent = context.arg;else if ("throw" === context.method) { if ("suspendedStart" === state) throw state = "completed", context.arg; context.dispatchException(context.arg); } else "return" === context.method && context.abrupt("return", context.arg); state = "executing"; var record = tryCatch(innerFn, self, context); if ("normal" === record.type) { if (state = context.done ? "completed" : "suspendedYield", record.arg === ContinueSentinel) continue; return { value: record.arg, done: context.done }; } "throw" === record.type && (state = "completed", context.method = "throw", context.arg = record.arg); } }; } function maybeInvokeDelegate(delegate, context) { var methodName = context.method, method = delegate.iterator[methodName]; if (undefined === method) return context.delegate = null, "throw" === methodName && delegate.iterator["return"] && (context.method = "return", context.arg = undefined, maybeInvokeDelegate(delegate, context), "throw" === context.method) || "return" !== methodName && (context.method = "throw", context.arg = new TypeError("The iterator does not provide a '" + methodName + "' method")), ContinueSentinel; var record = tryCatch(method, delegate.iterator, context.arg); if ("throw" === record.type) return context.method = "throw", context.arg = record.arg, context.delegate = null, ContinueSentinel; var info = record.arg; return info ? info.done ? (context[delegate.resultName] = info.value, context.next = delegate.nextLoc, "return" !== context.method && (context.method = "next", context.arg = undefined), context.delegate = null, ContinueSentinel) : info : (context.method = "throw", context.arg = new TypeError("iterator result is not an object"), context.delegate = null, ContinueSentinel); } function pushTryEntry(locs) { var entry = { tryLoc: locs[0] }; 1 in locs && (entry.catchLoc = locs[1]), 2 in locs && (entry.finallyLoc = locs[2], entry.afterLoc = locs[3]), this.tryEntries.push(entry); } function resetTryEntry(entry) { var record = entry.completion || {}; record.type = "normal", delete record.arg, entry.completion = record; } function Context(tryLocsList) { this.tryEntries = [{ tryLoc: "root" }], tryLocsList.forEach(pushTryEntry, this), this.reset(!0); } function values(iterable) { if (iterable) { var iteratorMethod = iterable[iteratorSymbol]; if (iteratorMethod) return iteratorMethod.call(iterable); if ("function" == typeof iterable.next) return iterable; if (!isNaN(iterable.length)) { var i = -1, next = function next() { for (; ++i < iterable.length;) if (hasOwn.call(iterable, i)) return next.value = iterable[i], next.done = !1, next; return next.value = undefined, next.done = !0, next; }; return next.next = next; } } return { next: doneResult }; } function doneResult() { return { value: undefined, done: !0 }; } return GeneratorFunction.prototype = GeneratorFunctionPrototype, defineProperty(Gp, "constructor", { value: GeneratorFunctionPrototype, configurable: !0 }), defineProperty(GeneratorFunctionPrototype, "constructor", { value: GeneratorFunction, configurable: !0 }), GeneratorFunction.displayName = define(GeneratorFunctionPrototype, toStringTagSymbol, "GeneratorFunction"), exports.isGeneratorFunction = function (genFun) { var ctor = "function" == typeof genFun && genFun.constructor; return !!ctor && (ctor === GeneratorFunction || "GeneratorFunction" === (ctor.displayName || ctor.name)); }, exports.mark = function (genFun) { return Object.setPrototypeOf ? Object.setPrototypeOf(genFun, GeneratorFunctionPrototype) : (genFun.__proto__ = GeneratorFunctionPrototype, define(genFun, toStringTagSymbol, "GeneratorFunction")), genFun.prototype = Object.create(Gp), genFun; }, exports.awrap = function (arg) { return { __await: arg }; }, defineIteratorMethods(AsyncIterator.prototype), define(AsyncIterator.prototype, asyncIteratorSymbol, function () { return this; }), exports.AsyncIterator = AsyncIterator, exports.async = function (innerFn, outerFn, self, tryLocsList, PromiseImpl) { void 0 === PromiseImpl && (PromiseImpl = Promise); var iter = new AsyncIterator(wrap(innerFn, outerFn, self, tryLocsList), PromiseImpl); return exports.isGeneratorFunction(outerFn) ? iter : iter.next().then(function (result) { return result.done ? result.value : iter.next(); }); }, defineIteratorMethods(Gp), define(Gp, toStringTagSymbol, "Generator"), define(Gp, iteratorSymbol, function () { return this; }), define(Gp, "toString", function () { return "[object Generator]"; }), exports.keys = function (val) { var object = Object(val), keys = []; for (var key in object) keys.push(key); return keys.reverse(), function next() { for (; keys.length;) { var key = keys.pop(); if (key in object) return next.value = key, next.done = !1, next; } return next.done = !0, next; }; }, exports.values = values, Context.prototype = { constructor: Context, reset: function reset(skipTempReset) { if (this.prev = 0, this.next = 0, this.sent = this._sent = undefined, this.done = !1, this.delegate = null, this.method = "next", this.arg = undefined, this.tryEntries.forEach(resetTryEntry), !skipTempReset) for (var name in this) "t" === name.charAt(0) && hasOwn.call(this, name) && !isNaN(+name.slice(1)) && (this[name] = undefined); }, stop: function stop() { this.done = !0; var rootRecord = this.tryEntries[0].completion; if ("throw" === rootRecord.type) throw rootRecord.arg; return this.rval; }, dispatchException: function dispatchException(exception) { if (this.done) throw exception; var context = this; function handle(loc, caught) { return record.type = "throw", record.arg = exception, context.next = loc, caught && (context.method = "next", context.arg = undefined), !!caught; } for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i], record = entry.completion; if ("root" === entry.tryLoc) return handle("end"); if (entry.tryLoc <= this.prev) { var hasCatch = hasOwn.call(entry, "catchLoc"), hasFinally = hasOwn.call(entry, "finallyLoc"); if (hasCatch && hasFinally) { if (this.prev < entry.catchLoc) return handle(entry.catchLoc, !0); if (this.prev < entry.finallyLoc) return handle(entry.finallyLoc); } else if (hasCatch) { if (this.prev < entry.catchLoc) return handle(entry.catchLoc, !0); } else { if (!hasFinally) throw new Error("try statement without catch or finally"); if (this.prev < entry.finallyLoc) return handle(entry.finallyLoc); } } } }, abrupt: function abrupt(type, arg) { for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i]; if (entry.tryLoc <= this.prev && hasOwn.call(entry, "finallyLoc") && this.prev < entry.finallyLoc) { var finallyEntry = entry; break; } } finallyEntry && ("break" === type || "continue" === type) && finallyEntry.tryLoc <= arg && arg <= finallyEntry.finallyLoc && (finallyEntry = null); var record = finallyEntry ? finallyEntry.completion : {}; return record.type = type, record.arg = arg, finallyEntry ? (this.method = "next", this.next = finallyEntry.finallyLoc, ContinueSentinel) : this.complete(record); }, complete: function complete(record, afterLoc) { if ("throw" === record.type) throw record.arg; return "break" === record.type || "continue" === record.type ? this.next = record.arg : "return" === record.type ? (this.rval = this.arg = record.arg, this.method = "return", this.next = "end") : "normal" === record.type && afterLoc && (this.next = afterLoc), ContinueSentinel; }, finish: function finish(finallyLoc) { for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i]; if (entry.finallyLoc === finallyLoc) return this.complete(entry.completion, entry.afterLoc), resetTryEntry(entry), ContinueSentinel; } }, "catch": function _catch(tryLoc) { for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i]; if (entry.tryLoc === tryLoc) { var record = entry.completion; if ("throw" === record.type) { var thrown = record.arg; resetTryEntry(entry); } return thrown; } } throw new Error("illegal catch attempt"); }, delegateYield: function delegateYield(iterable, resultName, nextLoc) { return this.delegate = { iterator: values(iterable), resultName: resultName, nextLoc: nextLoc }, "next" === this.method && (this.arg = undefined), ContinueSentinel; } }, exports; }
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
-function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i]; return arr2; }
-function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
-function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
-function _classCallCheck(instance, Constructor) { if (!_instanceof(instance, Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, _toPropertyKey(descriptor.key), descriptor); } }
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); Object.defineProperty(subClass, "prototype", { writable: false }); if (superClass) _setPrototypeOf(subClass, superClass); }
-function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf ? Object.setPrototypeOf.bind() : function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
-function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
-function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } else if (call !== void 0) { throw new TypeError("Derived constructors may only return object or undefined"); } return _assertThisInitialized(self); }
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
-function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf.bind() : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
-function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return _typeof(key) === "symbol" ? key : String(key); }
-function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (_typeof(res) !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
+function _getRequireWildcardCache(e) { if ("function" != typeof WeakMap) return null; var r = new WeakMap(), t = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(e) { return e ? t : r; })(e); }
+function _interopRequireWildcard(e, r) { if (!r && e && e.__esModule) return e; if (null === e || "object" != _typeof(e) && "function" != typeof e) return { "default": e }; var t = _getRequireWildcardCache(r); if (t && t.has(e)) return t.get(e); var n = { __proto__: null }, a = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var u in e) if ("default" !== u && {}.hasOwnProperty.call(e, u)) { var i = a ? Object.getOwnPropertyDescriptor(e, u) : null; i && (i.get || i.set) ? Object.defineProperty(n, u, i) : n[u] = e[u]; } return n["default"] = e, t && t.set(e, n), n; }
+function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
+function _regeneratorRuntime() { "use strict"; /*! regenerator-runtime -- Copyright (c) 2014-present, Facebook, Inc. -- license (MIT): https://github.com/facebook/regenerator/blob/main/LICENSE */ _regeneratorRuntime = function _regeneratorRuntime() { return e; }; var t, e = {}, r = Object.prototype, n = r.hasOwnProperty, o = Object.defineProperty || function (t, e, r) { t[e] = r.value; }, i = "function" == typeof Symbol ? Symbol : {}, a = i.iterator || "@@iterator", c = i.asyncIterator || "@@asyncIterator", u = i.toStringTag || "@@toStringTag"; function define(t, e, r) { return Object.defineProperty(t, e, { value: r, enumerable: !0, configurable: !0, writable: !0 }), t[e]; } try { define({}, ""); } catch (t) { define = function define(t, e, r) { return t[e] = r; }; } function wrap(t, e, r, n) { var i = e && _instanceof(e.prototype, Generator) ? e : Generator, a = Object.create(i.prototype), c = new Context(n || []); return o(a, "_invoke", { value: makeInvokeMethod(t, r, c) }), a; } function tryCatch(t, e, r) { try { return { type: "normal", arg: t.call(e, r) }; } catch (t) { return { type: "throw", arg: t }; } } e.wrap = wrap; var h = "suspendedStart", l = "suspendedYield", f = "executing", s = "completed", y = {}; function Generator() {} function GeneratorFunction() {} function GeneratorFunctionPrototype() {} var p = {}; define(p, a, function () { return this; }); var d = Object.getPrototypeOf, v = d && d(d(values([]))); v && v !== r && n.call(v, a) && (p = v); var g = GeneratorFunctionPrototype.prototype = Generator.prototype = Object.create(p); function defineIteratorMethods(t) { ["next", "throw", "return"].forEach(function (e) { define(t, e, function (t) { return this._invoke(e, t); }); }); } function AsyncIterator(t, e) { function invoke(r, o, i, a) { var c = tryCatch(t[r], t, o); if ("throw" !== c.type) { var u = c.arg, h = u.value; return h && "object" == _typeof(h) && n.call(h, "__await") ? e.resolve(h.__await).then(function (t) { invoke("next", t, i, a); }, function (t) { invoke("throw", t, i, a); }) : e.resolve(h).then(function (t) { u.value = t, i(u); }, function (t) { return invoke("throw", t, i, a); }); } a(c.arg); } var r; o(this, "_invoke", { value: function value(t, n) { function callInvokeWithMethodAndArg() { return new e(function (e, r) { invoke(t, n, e, r); }); } return r = r ? r.then(callInvokeWithMethodAndArg, callInvokeWithMethodAndArg) : callInvokeWithMethodAndArg(); } }); } function makeInvokeMethod(e, r, n) { var o = h; return function (i, a) { if (o === f) throw Error("Generator is already running"); if (o === s) { if ("throw" === i) throw a; return { value: t, done: !0 }; } for (n.method = i, n.arg = a;;) { var c = n.delegate; if (c) { var u = maybeInvokeDelegate(c, n); if (u) { if (u === y) continue; return u; } } if ("next" === n.method) n.sent = n._sent = n.arg;else if ("throw" === n.method) { if (o === h) throw o = s, n.arg; n.dispatchException(n.arg); } else "return" === n.method && n.abrupt("return", n.arg); o = f; var p = tryCatch(e, r, n); if ("normal" === p.type) { if (o = n.done ? s : l, p.arg === y) continue; return { value: p.arg, done: n.done }; } "throw" === p.type && (o = s, n.method = "throw", n.arg = p.arg); } }; } function maybeInvokeDelegate(e, r) { var n = r.method, o = e.iterator[n]; if (o === t) return r.delegate = null, "throw" === n && e.iterator["return"] && (r.method = "return", r.arg = t, maybeInvokeDelegate(e, r), "throw" === r.method) || "return" !== n && (r.method = "throw", r.arg = new TypeError("The iterator does not provide a '" + n + "' method")), y; var i = tryCatch(o, e.iterator, r.arg); if ("throw" === i.type) return r.method = "throw", r.arg = i.arg, r.delegate = null, y; var a = i.arg; return a ? a.done ? (r[e.resultName] = a.value, r.next = e.nextLoc, "return" !== r.method && (r.method = "next", r.arg = t), r.delegate = null, y) : a : (r.method = "throw", r.arg = new TypeError("iterator result is not an object"), r.delegate = null, y); } function pushTryEntry(t) { var e = { tryLoc: t[0] }; 1 in t && (e.catchLoc = t[1]), 2 in t && (e.finallyLoc = t[2], e.afterLoc = t[3]), this.tryEntries.push(e); } function resetTryEntry(t) { var e = t.completion || {}; e.type = "normal", delete e.arg, t.completion = e; } function Context(t) { this.tryEntries = [{ tryLoc: "root" }], t.forEach(pushTryEntry, this), this.reset(!0); } function values(e) { if (e || "" === e) { var r = e[a]; if (r) return r.call(e); if ("function" == typeof e.next) return e; if (!isNaN(e.length)) { var o = -1, i = function next() { for (; ++o < e.length;) if (n.call(e, o)) return next.value = e[o], next.done = !1, next; return next.value = t, next.done = !0, next; }; return i.next = i; } } throw new TypeError(_typeof(e) + " is not iterable"); } return GeneratorFunction.prototype = GeneratorFunctionPrototype, o(g, "constructor", { value: GeneratorFunctionPrototype, configurable: !0 }), o(GeneratorFunctionPrototype, "constructor", { value: GeneratorFunction, configurable: !0 }), GeneratorFunction.displayName = define(GeneratorFunctionPrototype, u, "GeneratorFunction"), e.isGeneratorFunction = function (t) { var e = "function" == typeof t && t.constructor; return !!e && (e === GeneratorFunction || "GeneratorFunction" === (e.displayName || e.name)); }, e.mark = function (t) { return Object.setPrototypeOf ? Object.setPrototypeOf(t, GeneratorFunctionPrototype) : (t.__proto__ = GeneratorFunctionPrototype, define(t, u, "GeneratorFunction")), t.prototype = Object.create(g), t; }, e.awrap = function (t) { return { __await: t }; }, defineIteratorMethods(AsyncIterator.prototype), define(AsyncIterator.prototype, c, function () { return this; }), e.AsyncIterator = AsyncIterator, e.async = function (t, r, n, o, i) { void 0 === i && (i = Promise); var a = new AsyncIterator(wrap(t, r, n, o), i); return e.isGeneratorFunction(r) ? a : a.next().then(function (t) { return t.done ? t.value : a.next(); }); }, defineIteratorMethods(g), define(g, u, "Generator"), define(g, a, function () { return this; }), define(g, "toString", function () { return "[object Generator]"; }), e.keys = function (t) { var e = Object(t), r = []; for (var n in e) r.push(n); return r.reverse(), function next() { for (; r.length;) { var t = r.pop(); if (t in e) return next.value = t, next.done = !1, next; } return next.done = !0, next; }; }, e.values = values, Context.prototype = { constructor: Context, reset: function reset(e) { if (this.prev = 0, this.next = 0, this.sent = this._sent = t, this.done = !1, this.delegate = null, this.method = "next", this.arg = t, this.tryEntries.forEach(resetTryEntry), !e) for (var r in this) "t" === r.charAt(0) && n.call(this, r) && !isNaN(+r.slice(1)) && (this[r] = t); }, stop: function stop() { this.done = !0; var t = this.tryEntries[0].completion; if ("throw" === t.type) throw t.arg; return this.rval; }, dispatchException: function dispatchException(e) { if (this.done) throw e; var r = this; function handle(n, o) { return a.type = "throw", a.arg = e, r.next = n, o && (r.method = "next", r.arg = t), !!o; } for (var o = this.tryEntries.length - 1; o >= 0; --o) { var i = this.tryEntries[o], a = i.completion; if ("root" === i.tryLoc) return handle("end"); if (i.tryLoc <= this.prev) { var c = n.call(i, "catchLoc"), u = n.call(i, "finallyLoc"); if (c && u) { if (this.prev < i.catchLoc) return handle(i.catchLoc, !0); if (this.prev < i.finallyLoc) return handle(i.finallyLoc); } else if (c) { if (this.prev < i.catchLoc) return handle(i.catchLoc, !0); } else { if (!u) throw Error("try statement without catch or finally"); if (this.prev < i.finallyLoc) return handle(i.finallyLoc); } } } }, abrupt: function abrupt(t, e) { for (var r = this.tryEntries.length - 1; r >= 0; --r) { var o = this.tryEntries[r]; if (o.tryLoc <= this.prev && n.call(o, "finallyLoc") && this.prev < o.finallyLoc) { var i = o; break; } } i && ("break" === t || "continue" === t) && i.tryLoc <= e && e <= i.finallyLoc && (i = null); var a = i ? i.completion : {}; return a.type = t, a.arg = e, i ? (this.method = "next", this.next = i.finallyLoc, y) : this.complete(a); }, complete: function complete(t, e) { if ("throw" === t.type) throw t.arg; return "break" === t.type || "continue" === t.type ? this.next = t.arg : "return" === t.type ? (this.rval = this.arg = t.arg, this.method = "return", this.next = "end") : "normal" === t.type && e && (this.next = e), y; }, finish: function finish(t) { for (var e = this.tryEntries.length - 1; e >= 0; --e) { var r = this.tryEntries[e]; if (r.finallyLoc === t) return this.complete(r.completion, r.afterLoc), resetTryEntry(r), y; } }, "catch": function _catch(t) { for (var e = this.tryEntries.length - 1; e >= 0; --e) { var r = this.tryEntries[e]; if (r.tryLoc === t) { var n = r.completion; if ("throw" === n.type) { var o = n.arg; resetTryEntry(r); } return o; } } throw Error("illegal catch attempt"); }, delegateYield: function delegateYield(e, r, n) { return this.delegate = { iterator: values(e), resultName: r, nextLoc: n }, "next" === this.method && (this.arg = t), y; } }, e; }
+function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
+function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
+function _createForOfIteratorHelper(r, e) { var t = "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"]; if (!t) { if (Array.isArray(r) || (t = _unsupportedIterableToArray(r)) || e && r && "number" == typeof r.length) { t && (r = t); var _n = 0, F = function F() {}; return { s: F, n: function n() { return _n >= r.length ? { done: !0 } : { done: !1, value: r[_n++] }; }, e: function e(r) { throw r; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var o, a = !0, u = !1; return { s: function s() { t = t.call(r); }, n: function n() { var r = t.next(); return a = r.done, r; }, e: function e(r) { u = !0, o = r; }, f: function f() { try { a || null == t["return"] || t["return"](); } finally { if (u) throw o; } } }; }
+function _unsupportedIterableToArray(r, a) { if (r) { if ("string" == typeof r) return _arrayLikeToArray(r, a); var t = {}.toString.call(r).slice(8, -1); return "Object" === t && r.constructor && (t = r.constructor.name), "Map" === t || "Set" === t ? Array.from(r) : "Arguments" === t || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(t) ? _arrayLikeToArray(r, a) : void 0; } }
+function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length); for (var e = 0, n = Array(a); e < a; e++) n[e] = r[e]; return n; }
+function asyncGeneratorStep(n, t, e, r, o, a, c) { try { var i = n[a](c), u = i.value; } catch (n) { return void e(n); } i.done ? t(u) : Promise.resolve(u).then(r, o); }
+function _asyncToGenerator(n) { return function () { var t = this, e = arguments; return new Promise(function (r, o) { var a = n.apply(t, e); function _next(n) { asyncGeneratorStep(a, r, o, _next, _throw, "next", n); } function _throw(n) { asyncGeneratorStep(a, r, o, _next, _throw, "throw", n); } _next(void 0); }); }; }
+function _classCallCheck(a, n) { if (!_instanceof(a, n)) throw new TypeError("Cannot call a class as a function"); }
+function _defineProperties(e, r) { for (var t = 0; t < r.length; t++) { var o = r[t]; o.enumerable = o.enumerable || !1, o.configurable = !0, "value" in o && (o.writable = !0), Object.defineProperty(e, _toPropertyKey(o.key), o); } }
+function _createClass(e, r, t) { return r && _defineProperties(e.prototype, r), t && _defineProperties(e, t), Object.defineProperty(e, "prototype", { writable: !1 }), e; }
+function _callSuper(t, o, e) { return o = _getPrototypeOf(o), _possibleConstructorReturn(t, _isNativeReflectConstruct() ? Reflect.construct(o, e || [], _getPrototypeOf(t).constructor) : o.apply(t, e)); }
+function _possibleConstructorReturn(t, e) { if (e && ("object" == _typeof(e) || "function" == typeof e)) return e; if (void 0 !== e) throw new TypeError("Derived constructors may only return object or undefined"); return _assertThisInitialized(t); }
+function _assertThisInitialized(e) { if (void 0 === e) throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); return e; }
+function _isNativeReflectConstruct() { try { var t = !Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); } catch (t) {} return (_isNativeReflectConstruct = function _isNativeReflectConstruct() { return !!t; })(); }
+function _getPrototypeOf(t) { return _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf.bind() : function (t) { return t.__proto__ || Object.getPrototypeOf(t); }, _getPrototypeOf(t); }
+function _inherits(t, e) { if ("function" != typeof e && null !== e) throw new TypeError("Super expression must either be null or a function"); t.prototype = Object.create(e && e.prototype, { constructor: { value: t, writable: !0, configurable: !0 } }), Object.defineProperty(t, "prototype", { writable: !1 }), e && _setPrototypeOf(t, e); }
+function _setPrototypeOf(t, e) { return _setPrototypeOf = Object.setPrototypeOf ? Object.setPrototypeOf.bind() : function (t, e) { return t.__proto__ = e, t; }, _setPrototypeOf(t, e); }
+function _defineProperty(e, r, t) { return (r = _toPropertyKey(r)) in e ? Object.defineProperty(e, r, { value: t, enumerable: !0, configurable: !0, writable: !0 }) : e[r] = t, e; }
+function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == _typeof(i) ? i : i + ""; }
+function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
 var PostmarkService = /*#__PURE__*/function (_NotificationService) {
-  _inherits(PostmarkService, _NotificationService);
-  var _super = _createSuper(PostmarkService);
   /**
    * @param {Object} options - options defined in `medusa-config.js`
    */
@@ -52,16 +50,16 @@ var PostmarkService = /*#__PURE__*/function (_NotificationService) {
       totalsService = _ref.totalsService,
       giftCardService = _ref.giftCardService;
     _classCallCheck(this, PostmarkService);
-    _this = _super.call(this, {
+    _this = _callSuper(this, PostmarkService, [{
       manager: manager,
       orderRepository: orderRepository,
       cartRepository: cartRepository,
       lineItemRepository: lineItemRepository
-    });
-    _defineProperty(_assertThisInitialized(_this), "manager_", null);
-    _defineProperty(_assertThisInitialized(_this), "orderRepository_", null);
-    _defineProperty(_assertThisInitialized(_this), "cartRepository_", null);
-    _defineProperty(_assertThisInitialized(_this), "lineItemRepository_", null);
+    }]);
+    _defineProperty(_this, "manager_", null);
+    _defineProperty(_this, "orderRepository_", null);
+    _defineProperty(_this, "cartRepository_", null);
+    _defineProperty(_this, "lineItemRepository_", null);
     _this.options_ = options;
     _this.manager_ = manager;
     _this.orderRepository_ = orderRepository;
@@ -75,15 +73,14 @@ var PostmarkService = /*#__PURE__*/function (_NotificationService) {
     _this.client_ = new postmark.ServerClient(options.server_api);
     return _this;
   }
-  _createClass(PostmarkService, [{
+  _inherits(PostmarkService, _NotificationService);
+  return _createClass(PostmarkService, [{
     key: "getAbandonedCarts",
     value: function () {
-      var _getAbandonedCarts = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee4() {
+      var _getAbandonedCarts = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee4() {
         var _this$options_,
           _this$options_2,
-          _this$options_2$aband,
           _this$options_3,
-          _this$options_3$aband,
           _this$options_4,
           _options$first,
           _options$second,
@@ -93,7 +90,7 @@ var PostmarkService = /*#__PURE__*/function (_NotificationService) {
         return _regeneratorRuntime().wrap(function _callee4$(_context5) {
           while (1) switch (_context5.prev = _context5.next) {
             case 0:
-              if (!(!((_this$options_ = this.options_) !== null && _this$options_ !== void 0 && _this$options_.abandoned_cart) || !((_this$options_2 = this.options_) !== null && _this$options_2 !== void 0 && (_this$options_2$aband = _this$options_2.abandoned_cart) !== null && _this$options_2$aband !== void 0 && _this$options_2$aband.enabled) || !((_this$options_3 = this.options_) !== null && _this$options_3 !== void 0 && (_this$options_3$aband = _this$options_3.abandoned_cart) !== null && _this$options_3$aband !== void 0 && _this$options_3$aband.first))) {
+              if (!(!((_this$options_ = this.options_) !== null && _this$options_ !== void 0 && _this$options_.abandoned_cart) || !((_this$options_2 = this.options_) !== null && _this$options_2 !== void 0 && (_this$options_2 = _this$options_2.abandoned_cart) !== null && _this$options_2 !== void 0 && _this$options_2.enabled) || !((_this$options_3 = this.options_) !== null && _this$options_3 !== void 0 && (_this$options_3 = _this$options_3.abandoned_cart) !== null && _this$options_3 !== void 0 && _this$options_3.first))) {
                 _context5.next = 2;
                 break;
               }
@@ -102,9 +99,9 @@ var PostmarkService = /*#__PURE__*/function (_NotificationService) {
               console.log("Getting abandoned carts");
               options = (_this$options_4 = this.options_) === null || _this$options_4 === void 0 ? void 0 : _this$options_4.abandoned_cart;
               now = new Date();
-              firstCheck = new Date(now.getTime() - parseInt(options === null || options === void 0 ? void 0 : (_options$first = options.first) === null || _options$first === void 0 ? void 0 : _options$first.delay) * 60 * 60 * 1000);
-              secondCheck = new Date(now.getTime() - parseInt(options === null || options === void 0 ? void 0 : (_options$second = options.second) === null || _options$second === void 0 ? void 0 : _options$second.delay) * 60 * 60 * 1000);
-              thirdCheck = new Date(now.getTime() - parseInt(options === null || options === void 0 ? void 0 : (_options$third = options.third) === null || _options$third === void 0 ? void 0 : _options$third.delay) * 60 * 60 * 1000);
+              firstCheck = new Date(now.getTime() - parseInt(options === null || options === void 0 || (_options$first = options.first) === null || _options$first === void 0 ? void 0 : _options$first.delay) * 60 * 60 * 1000);
+              secondCheck = new Date(now.getTime() - parseInt(options === null || options === void 0 || (_options$second = options.second) === null || _options$second === void 0 ? void 0 : _options$second.delay) * 60 * 60 * 1000);
+              thirdCheck = new Date(now.getTime() - parseInt(options === null || options === void 0 || (_options$third = options.third) === null || _options$third === void 0 ? void 0 : _options$third.delay) * 60 * 60 * 1000);
               cartRepository = this.manager_.withRepository(this.cartRepository_);
               lineItemRepository = this.manager_.withRepository(this.lineItemRepository_);
               _context5.next = 12;
@@ -151,7 +148,7 @@ var PostmarkService = /*#__PURE__*/function (_NotificationService) {
             case 35:
               if (cartData.items.find(function (li) {
                 return (li === null || li === void 0 ? void 0 : li.updated_at) <= firstCheck;
-              }) !== undefined && (cart === null || cart === void 0 ? void 0 : (_cart$metadata4 = cart.metadata) === null || _cart$metadata4 === void 0 ? void 0 : _cart$metadata4.third_abandonedcart_mail) !== true) abandonedCarts.push(cartData);
+              }) !== undefined && (cart === null || cart === void 0 || (_cart$metadata4 = cart.metadata) === null || _cart$metadata4 === void 0 ? void 0 : _cart$metadata4.third_abandonedcart_mail) !== true) abandonedCarts.push(cartData);
             case 36:
               _context5.next = 18;
               break;
@@ -183,7 +180,7 @@ var PostmarkService = /*#__PURE__*/function (_NotificationService) {
                       check = cart.items.sort(function (a, b) {
                         return b.updated_at.getTime() - a.updated_at.getTime();
                       })[0].updated_at;
-                      items = _this2.processItems_(cart.items, cart !== null && cart !== void 0 && (_cart$region = cart.region) !== null && _cart$region !== void 0 && _cart$region.includes_tax ? 0 : (cart === null || cart === void 0 ? void 0 : (_cart$region2 = cart.region) === null || _cart$region2 === void 0 ? void 0 : _cart$region2.tax_rate) / 100, cart === null || cart === void 0 ? void 0 : (_cart$region3 = cart.region) === null || _cart$region3 === void 0 ? void 0 : _cart$region3.currency_code.toUpperCase());
+                      items = _this2.processItems_(cart.items, cart !== null && cart !== void 0 && (_cart$region = cart.region) !== null && _cart$region !== void 0 && _cart$region.includes_tax ? 0 : (cart === null || cart === void 0 || (_cart$region2 = cart.region) === null || _cart$region2 === void 0 ? void 0 : _cart$region2.tax_rate) / 100, cart === null || cart === void 0 || (_cart$region3 = cart.region) === null || _cart$region3 === void 0 ? void 0 : _cart$region3.currency_code.toUpperCase());
                       sendOptions = {
                         From: _this2.options_.from,
                         to: cart.email,
@@ -200,13 +197,13 @@ var PostmarkService = /*#__PURE__*/function (_NotificationService) {
                         _context4.next = 12;
                         break;
                       }
-                      if (!(options !== null && options !== void 0 && (_options$third2 = options.third) !== null && _options$third2 !== void 0 && _options$third2.template && (cart === null || cart === void 0 ? void 0 : (_cart$metadata = cart.metadata) === null || _cart$metadata === void 0 ? void 0 : _cart$metadata.third_abandonedcart_mail) !== true)) {
+                      if (!(options !== null && options !== void 0 && (_options$third2 = options.third) !== null && _options$third2 !== void 0 && _options$third2.template && (cart === null || cart === void 0 || (_cart$metadata = cart.metadata) === null || _cart$metadata === void 0 ? void 0 : _cart$metadata.third_abandonedcart_mail) !== true)) {
                         _context4.next = 10;
                         break;
                       }
-                      sendOptions.TemplateId = options === null || options === void 0 ? void 0 : (_options$third3 = options.third) === null || _options$third3 === void 0 ? void 0 : _options$third3.template;
+                      sendOptions.TemplateId = options === null || options === void 0 || (_options$third3 = options.third) === null || _options$third3 === void 0 ? void 0 : _options$third3.template;
                       _context4.next = 10;
-                      return _this2.client_.sendEmailWithTemplate(sendOptions).then( /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
+                      return _this2.client_.sendEmailWithTemplate(sendOptions).then(/*#__PURE__*/_asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
                         return _regeneratorRuntime().wrap(function _callee$(_context) {
                           while (1) switch (_context.prev = _context.next) {
                             case 0:
@@ -225,7 +222,7 @@ var PostmarkService = /*#__PURE__*/function (_NotificationService) {
                         console.error(error);
                         return {
                           to: sendOptions.to,
-                          status: 'failed',
+                          status: "failed",
                           data: sendOptions
                         };
                       });
@@ -233,13 +230,13 @@ var PostmarkService = /*#__PURE__*/function (_NotificationService) {
                       _context4.next = 16;
                       break;
                     case 12:
-                      if (!(options !== null && options !== void 0 && (_options$second2 = options.second) !== null && _options$second2 !== void 0 && _options$second2.template && (cart === null || cart === void 0 ? void 0 : (_cart$metadata2 = cart.metadata) === null || _cart$metadata2 === void 0 ? void 0 : _cart$metadata2.second_abandonedcart_mail) !== true)) {
+                      if (!(options !== null && options !== void 0 && (_options$second2 = options.second) !== null && _options$second2 !== void 0 && _options$second2.template && (cart === null || cart === void 0 || (_cart$metadata2 = cart.metadata) === null || _cart$metadata2 === void 0 ? void 0 : _cart$metadata2.second_abandonedcart_mail) !== true)) {
                         _context4.next = 16;
                         break;
                       }
-                      sendOptions.TemplateId = options === null || options === void 0 ? void 0 : (_options$second3 = options.second) === null || _options$second3 === void 0 ? void 0 : _options$second3.template;
+                      sendOptions.TemplateId = options === null || options === void 0 || (_options$second3 = options.second) === null || _options$second3 === void 0 ? void 0 : _options$second3.template;
                       _context4.next = 16;
-                      return _this2.client_.sendEmailWithTemplate(sendOptions).then( /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
+                      return _this2.client_.sendEmailWithTemplate(sendOptions).then(/*#__PURE__*/_asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
                         return _regeneratorRuntime().wrap(function _callee2$(_context2) {
                           while (1) switch (_context2.prev = _context2.next) {
                             case 0:
@@ -258,7 +255,7 @@ var PostmarkService = /*#__PURE__*/function (_NotificationService) {
                         console.error(error);
                         return {
                           to: sendOptions.to,
-                          status: 'failed',
+                          status: "failed",
                           data: sendOptions
                         };
                       });
@@ -266,13 +263,13 @@ var PostmarkService = /*#__PURE__*/function (_NotificationService) {
                       _context4.next = 22;
                       break;
                     case 18:
-                      if (!(options !== null && options !== void 0 && (_options$first2 = options.first) !== null && _options$first2 !== void 0 && _options$first2.template && (cart === null || cart === void 0 ? void 0 : (_cart$metadata3 = cart.metadata) === null || _cart$metadata3 === void 0 ? void 0 : _cart$metadata3.first_abandonedcart_mail) !== true)) {
+                      if (!(options !== null && options !== void 0 && (_options$first2 = options.first) !== null && _options$first2 !== void 0 && _options$first2.template && (cart === null || cart === void 0 || (_cart$metadata3 = cart.metadata) === null || _cart$metadata3 === void 0 ? void 0 : _cart$metadata3.first_abandonedcart_mail) !== true)) {
                         _context4.next = 22;
                         break;
                       }
-                      sendOptions.TemplateId = options === null || options === void 0 ? void 0 : (_options$first3 = options.first) === null || _options$first3 === void 0 ? void 0 : _options$first3.template;
+                      sendOptions.TemplateId = options === null || options === void 0 || (_options$first3 = options.first) === null || _options$first3 === void 0 ? void 0 : _options$first3.template;
                       _context4.next = 22;
-                      return _this2.client_.sendEmailWithTemplate(sendOptions).then( /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3() {
+                      return _this2.client_.sendEmailWithTemplate(sendOptions).then(/*#__PURE__*/_asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee3() {
                         return _regeneratorRuntime().wrap(function _callee3$(_context3) {
                           while (1) switch (_context3.prev = _context3.next) {
                             case 0:
@@ -291,7 +288,7 @@ var PostmarkService = /*#__PURE__*/function (_NotificationService) {
                         console.error(error);
                         return {
                           to: sendOptions.to,
-                          status: 'failed',
+                          status: "failed",
                           data: sendOptions
                         };
                       });
@@ -326,22 +323,18 @@ var PostmarkService = /*#__PURE__*/function (_NotificationService) {
   }, {
     key: "remindUpsellOrders",
     value: function () {
-      var _remindUpsellOrders = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee6() {
+      var _remindUpsellOrders = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee6() {
         var _this$options_5,
           _this$options_6,
-          _this$options_6$upsel,
           _this$options_7,
-          _this$options_7$upsel,
           _this$options_8,
-          _this$options_8$upsel,
           _this$options_9,
-          _this$options_9$upsel,
           _this3 = this;
-        var orderRepo, options, validThrough, orders, _iterator2, _step2, _loop2, _ret;
+        var orderRepo, options, validThrough, orders, _iterator2, _step2, _loop2;
         return _regeneratorRuntime().wrap(function _callee6$(_context8) {
           while (1) switch (_context8.prev = _context8.next) {
             case 0:
-              if (!(!((_this$options_5 = this.options_) !== null && _this$options_5 !== void 0 && _this$options_5.upsell) || !((_this$options_6 = this.options_) !== null && _this$options_6 !== void 0 && (_this$options_6$upsel = _this$options_6.upsell) !== null && _this$options_6$upsel !== void 0 && _this$options_6$upsel.enabled) || !((_this$options_7 = this.options_) !== null && _this$options_7 !== void 0 && (_this$options_7$upsel = _this$options_7.upsell) !== null && _this$options_7$upsel !== void 0 && _this$options_7$upsel.collection) || !((_this$options_8 = this.options_) !== null && _this$options_8 !== void 0 && (_this$options_8$upsel = _this$options_8.upsell) !== null && _this$options_8$upsel !== void 0 && _this$options_8$upsel.delay) || !((_this$options_9 = this.options_) !== null && _this$options_9 !== void 0 && (_this$options_9$upsel = _this$options_9.upsell) !== null && _this$options_9$upsel !== void 0 && _this$options_9$upsel.template))) {
+              if (!(!((_this$options_5 = this.options_) !== null && _this$options_5 !== void 0 && _this$options_5.upsell) || !((_this$options_6 = this.options_) !== null && _this$options_6 !== void 0 && (_this$options_6 = _this$options_6.upsell) !== null && _this$options_6 !== void 0 && _this$options_6.enabled) || !((_this$options_7 = this.options_) !== null && _this$options_7 !== void 0 && (_this$options_7 = _this$options_7.upsell) !== null && _this$options_7 !== void 0 && _this$options_7.collection) || !((_this$options_8 = this.options_) !== null && _this$options_8 !== void 0 && (_this$options_8 = _this$options_8.upsell) !== null && _this$options_8 !== void 0 && _this$options_8.delay) || !((_this$options_9 = this.options_) !== null && _this$options_9 !== void 0 && (_this$options_9 = _this$options_9.upsell) !== null && _this$options_9 !== void 0 && _this$options_9.template))) {
                 _context8.next = 2;
                 break;
               }
@@ -362,7 +355,7 @@ var PostmarkService = /*#__PURE__*/function (_NotificationService) {
               _context8.prev = 9;
               _loop2 = /*#__PURE__*/_regeneratorRuntime().mark(function _loop2() {
                 var _order$metadata;
-                var order, orderData, upsell, _iterator3, _step3, _item$variant, _item$variant$product, item, sendOptions;
+                var order, orderData, upsell, _iterator3, _step3, _item$variant, item, sendOptions;
                 return _regeneratorRuntime().wrap(function _loop2$(_context7) {
                   while (1) switch (_context7.prev = _context7.next) {
                     case 0:
@@ -371,7 +364,7 @@ var PostmarkService = /*#__PURE__*/function (_NotificationService) {
                         _context7.next = 3;
                         break;
                       }
-                      return _context7.abrupt("return", "continue");
+                      return _context7.abrupt("return", 1);
                     case 3:
                       _context7.next = 5;
                       return _this3.orderService_.retrieve(order.id, {
@@ -385,7 +378,7 @@ var PostmarkService = /*#__PURE__*/function (_NotificationService) {
                       try {
                         for (_iterator3.s(); !(_step3 = _iterator3.n()).done;) {
                           item = _step3.value;
-                          if ((item === null || item === void 0 ? void 0 : (_item$variant = item.variant) === null || _item$variant === void 0 ? void 0 : (_item$variant$product = _item$variant.product) === null || _item$variant$product === void 0 ? void 0 : _item$variant$product.collection_id) !== options.collection) upsell = false;
+                          if ((item === null || item === void 0 || (_item$variant = item.variant) === null || _item$variant === void 0 || (_item$variant = _item$variant.product) === null || _item$variant === void 0 ? void 0 : _item$variant.collection_id) !== options.collection) upsell = false;
                         }
                       } catch (err) {
                         _iterator3.e(err);
@@ -414,7 +407,7 @@ var PostmarkService = /*#__PURE__*/function (_NotificationService) {
                       });
                       //console.log("Sending upsell email to " + orderData.customer.email + " for order " + orderData.id)
                       _context7.next = 15;
-                      return _this3.client_.sendEmailWithTemplate(sendOptions).then( /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee5() {
+                      return _this3.client_.sendEmailWithTemplate(sendOptions).then(/*#__PURE__*/_asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee5() {
                         return _regeneratorRuntime().wrap(function _callee5$(_context6) {
                           while (1) switch (_context6.prev = _context6.next) {
                             case 0:
@@ -431,7 +424,7 @@ var PostmarkService = /*#__PURE__*/function (_NotificationService) {
                         console.error(error);
                         return {
                           to: sendOptions.to,
-                          status: 'failed',
+                          status: "failed",
                           data: sendOptions
                         };
                       });
@@ -444,36 +437,35 @@ var PostmarkService = /*#__PURE__*/function (_NotificationService) {
               _iterator2.s();
             case 12:
               if ((_step2 = _iterator2.n()).done) {
-                _context8.next = 19;
+                _context8.next = 18;
                 break;
               }
               return _context8.delegateYield(_loop2(), "t0", 14);
             case 14:
-              _ret = _context8.t0;
-              if (!(_ret === "continue")) {
-                _context8.next = 17;
+              if (!_context8.t0) {
+                _context8.next = 16;
                 break;
               }
-              return _context8.abrupt("continue", 17);
-            case 17:
+              return _context8.abrupt("continue", 16);
+            case 16:
               _context8.next = 12;
               break;
-            case 19:
-              _context8.next = 24;
+            case 18:
+              _context8.next = 23;
               break;
-            case 21:
-              _context8.prev = 21;
+            case 20:
+              _context8.prev = 20;
               _context8.t1 = _context8["catch"](9);
               _iterator2.e(_context8.t1);
-            case 24:
-              _context8.prev = 24;
+            case 23:
+              _context8.prev = 23;
               _iterator2.f();
-              return _context8.finish(24);
-            case 27:
+              return _context8.finish(23);
+            case 26:
             case "end":
               return _context8.stop();
           }
-        }, _callee6, this, [[9, 21, 24, 27]]);
+        }, _callee6, this, [[9, 20, 23, 26]]);
       }));
       function remindUpsellOrders() {
         return _remindUpsellOrders.apply(this, arguments);
@@ -483,8 +475,8 @@ var PostmarkService = /*#__PURE__*/function (_NotificationService) {
   }, {
     key: "fetchAttachments",
     value: function () {
-      var _fetchAttachments = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee7(event, data, attachmentGenerator) {
-        var attachments, base64, _data$return_request, shipping_method, shipping_data, provider, lbl, _base, _this$options_$pdf$en, _this$options_10, _this$options_10$pdf, _base2;
+      var _fetchAttachments = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee7(event, data, attachmentGenerator) {
+        var attachments, base64, _data$return_request, shipping_method, shipping_data, provider, lbl, _base, _this$options_$pdf$en, _this$options_10, _base2;
         return _regeneratorRuntime().wrap(function _callee7$(_context9) {
           while (1) switch (_context9.prev = _context9.next) {
             case 0:
@@ -568,7 +560,7 @@ var PostmarkService = /*#__PURE__*/function (_NotificationService) {
               return _context9.abrupt("return", attachments);
             case 41:
               _context9.prev = 41;
-              if (!(((_this$options_$pdf$en = (_this$options_10 = this.options_) === null || _this$options_10 === void 0 ? void 0 : (_this$options_10$pdf = _this$options_10.pdf) === null || _this$options_10$pdf === void 0 ? void 0 : _this$options_10$pdf.enabled) !== null && _this$options_$pdf$en !== void 0 ? _this$options_$pdf$en : false) && attachmentGenerator && attachmentGenerator.createInvoice)) {
+              if (!(((_this$options_$pdf$en = (_this$options_10 = this.options_) === null || _this$options_10 === void 0 || (_this$options_10 = _this$options_10.pdf) === null || _this$options_10 === void 0 ? void 0 : _this$options_10.enabled) !== null && _this$options_$pdf$en !== void 0 ? _this$options_$pdf$en : false) && attachmentGenerator && attachmentGenerator.createInvoice)) {
                 _context9.next = 47;
                 break;
               }
@@ -587,7 +579,7 @@ var PostmarkService = /*#__PURE__*/function (_NotificationService) {
             case 49:
               _context9.prev = 49;
               _context9.t4 = _context9["catch"](41);
-              console.log('error ?', _context9.t4);
+              console.log("error ?", _context9.t4);
               console.error(_context9.t4);
             case 53:
               return _context9.abrupt("return", attachments);
@@ -607,12 +599,12 @@ var PostmarkService = /*#__PURE__*/function (_NotificationService) {
   }, {
     key: "fetchData",
     value: function () {
-      var _fetchData = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee8(event, eventData, attachmentGenerator) {
+      var _fetchData = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee8(event, eventData, attachmentGenerator) {
         return _regeneratorRuntime().wrap(function _callee8$(_context10) {
           while (1) switch (_context10.prev = _context10.next) {
             case 0:
               _context10.t0 = event;
-              _context10.next = _context10.t0 === "order.placed" ? 3 : _context10.t0 === "order.shipment_created" ? 4 : _context10.t0 === "order.canceled" ? 5 : _context10.t0 === "user.password_reset" ? 6 : _context10.t0 === "customer.password_reset" ? 7 : _context10.t0 === "gift_card.created" ? 8 : 9;
+              _context10.next = _context10.t0 === "order.placed" ? 3 : _context10.t0 === "order.shipment_created" ? 4 : _context10.t0 === "order.canceled" ? 5 : _context10.t0 === "user.password_reset" ? 6 : _context10.t0 === "customer.password_reset" ? 7 : _context10.t0 === "custom.contact_us" ? 8 : _context10.t0 === "gift_card.created" ? 9 : 10;
               break;
             case 3:
               return _context10.abrupt("return", this.orderPlacedData(eventData, attachmentGenerator));
@@ -625,10 +617,12 @@ var PostmarkService = /*#__PURE__*/function (_NotificationService) {
             case 7:
               return _context10.abrupt("return", this.customerPasswordResetData(eventData, attachmentGenerator));
             case 8:
-              return _context10.abrupt("return", this.giftCardData(eventData, attachmentGenerator));
+              return _context10.abrupt("return", this.customContactUsData(eventData, attachmentGenerator));
             case 9:
-              return _context10.abrupt("return", eventData);
+              return _context10.abrupt("return", this.giftCardData(eventData, attachmentGenerator));
             case 10:
+              return _context10.abrupt("return", eventData);
+            case 11:
             case "end":
               return _context10.stop();
           }
@@ -642,7 +636,7 @@ var PostmarkService = /*#__PURE__*/function (_NotificationService) {
   }, {
     key: "sendNotification",
     value: function () {
-      var _sendNotification = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee9(event, eventData, attachmentGenerator) {
+      var _sendNotification = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee9(event, eventData, attachmentGenerator) {
         var _data$email, _data$customer, _this$options_11;
         var group, action, event_, templateId, data, attachments, sendOptions;
         return _regeneratorRuntime().wrap(function _callee9$(_context11) {
@@ -686,7 +680,7 @@ var PostmarkService = /*#__PURE__*/function (_NotificationService) {
             case 24:
               sendOptions = {
                 From: this.options_.from,
-                to: (_data$email = data.email) !== null && _data$email !== void 0 ? _data$email : data === null || data === void 0 ? void 0 : (_data$customer = data.customer) === null || _data$customer === void 0 ? void 0 : _data$customer.email,
+                to: (_data$email = data.email) !== null && _data$email !== void 0 ? _data$email : data === null || data === void 0 || (_data$customer = data.customer) === null || _data$customer === void 0 ? void 0 : _data$customer.email,
                 TemplateId: templateId,
                 TemplateModel: _objectSpread(_objectSpread({}, data), this.options_.default_data)
               };
@@ -705,14 +699,14 @@ var PostmarkService = /*#__PURE__*/function (_NotificationService) {
               return this.client_.sendEmailWithTemplate(sendOptions).then(function () {
                 return {
                   to: sendOptions.to,
-                  status: 'sent',
+                  status: "sent",
                   data: sendOptions
                 };
               })["catch"](function (error) {
                 console.error(error);
                 return {
                   to: sendOptions.to,
-                  status: 'failed',
+                  status: "failed",
                   data: sendOptions
                 };
               });
@@ -732,7 +726,7 @@ var PostmarkService = /*#__PURE__*/function (_NotificationService) {
   }, {
     key: "resendNotification",
     value: function () {
-      var _resendNotification = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee10(notification, config, attachmentGenerator) {
+      var _resendNotification = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee10(notification, config, attachmentGenerator) {
         var sendOptions, attachs;
         return _regeneratorRuntime().wrap(function _callee10$(_context12) {
           while (1) switch (_context12.prev = _context12.next) {
@@ -757,14 +751,14 @@ var PostmarkService = /*#__PURE__*/function (_NotificationService) {
               return this.client_.sendEmailWithTemplate(sendOptions).then(function () {
                 return {
                   to: sendOptions.To,
-                  status: 'sent',
+                  status: "sent",
                   data: sendOptions
                 };
               })["catch"](function (error) {
                 console.error(error);
                 return {
                   to: sendOptions.To,
-                  status: 'failed',
+                  status: "failed",
                   data: sendOptions
                 };
               });
@@ -784,7 +778,7 @@ var PostmarkService = /*#__PURE__*/function (_NotificationService) {
   }, {
     key: "sendMail",
     value: function () {
-      var _sendMail = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee11(options) {
+      var _sendMail = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee11(options) {
         return _regeneratorRuntime().wrap(function _callee11$(_context13) {
           while (1) switch (_context13.prev = _context13.next) {
             case 0:
@@ -813,7 +807,7 @@ var PostmarkService = /*#__PURE__*/function (_NotificationService) {
   }, {
     key: "orderShipmentCreatedData",
     value: function () {
-      var _orderShipmentCreatedData = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee12(_ref6, attachmentGenerator) {
+      var _orderShipmentCreatedData = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee12(_ref6, attachmentGenerator) {
         var id, fulfillment_id, order, shipment, locale;
         return _regeneratorRuntime().wrap(function _callee12$(_context14) {
           while (1) switch (_context14.prev = _context14.next) {
@@ -859,7 +853,7 @@ var PostmarkService = /*#__PURE__*/function (_NotificationService) {
   }, {
     key: "orderCanceledData",
     value: function () {
-      var _orderCanceledData = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee13(_ref7) {
+      var _orderCanceledData = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee13(_ref7) {
         var id, order, subtotal, tax_total, discount_total, shipping_total, gift_card_total, total, taxRate, currencyCode, items, discounts, giftCards, locale;
         return _regeneratorRuntime().wrap(function _callee13$(_context15) {
           while (1) switch (_context15.prev = _context15.next) {
@@ -929,7 +923,7 @@ var PostmarkService = /*#__PURE__*/function (_NotificationService) {
   }, {
     key: "giftCardData",
     value: function () {
-      var _giftCardData = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee14(_ref8) {
+      var _giftCardData = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee14(_ref8) {
         var _data$order$email;
         var id, data;
         return _regeneratorRuntime().wrap(function _callee14$(_context16) {
@@ -943,7 +937,7 @@ var PostmarkService = /*#__PURE__*/function (_NotificationService) {
             case 3:
               data = _context16.sent;
               return _context16.abrupt("return", _objectSpread(_objectSpread({}, data), {}, {
-                email: (_data$order$email = data.order.email) !== null && _data$order$email !== void 0 ? _data$order$email : ''
+                email: (_data$order$email = data.order.email) !== null && _data$order$email !== void 0 ? _data$order$email : ""
               }));
             case 5:
             case "end":
@@ -959,7 +953,7 @@ var PostmarkService = /*#__PURE__*/function (_NotificationService) {
   }, {
     key: "orderPlacedData",
     value: function () {
-      var _orderPlacedData = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee16(_ref9) {
+      var _orderPlacedData = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee16(_ref9) {
         var _this4 = this,
           _order$shipping_metho;
         var id, order, tax_total, shipping_total, gift_card_total, total, currencyCode, items, discounts, giftCards, locale, discountTotal, discounted_subtotal, subtotal, subtotal_ex_tax;
@@ -977,8 +971,8 @@ var PostmarkService = /*#__PURE__*/function (_NotificationService) {
               tax_total = order.tax_total, shipping_total = order.shipping_total, gift_card_total = order.gift_card_total, total = order.total;
               currencyCode = order.currency_code.toUpperCase();
               _context18.next = 8;
-              return Promise.all(order.items.map( /*#__PURE__*/function () {
-                var _ref10 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee15(i) {
+              return Promise.all(order.items.map(/*#__PURE__*/function () {
+                var _ref10 = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee15(i) {
                   return _regeneratorRuntime().wrap(function _callee15$(_context17) {
                     while (1) switch (_context17.prev = _context17.next) {
                       case 0:
@@ -1056,7 +1050,7 @@ var PostmarkService = /*#__PURE__*/function (_NotificationService) {
                 tax_total: "".concat(this.humanPrice_(tax_total, currencyCode), " ").concat(currencyCode),
                 discount_total: "".concat(this.humanPrice_(discountTotal, currencyCode), " ").concat(currencyCode),
                 shipping_total: "".concat(this.humanPrice_(shipping_total, currencyCode), " ").concat(currencyCode),
-                shipping_total_inc: "".concat(this.humanPrice_((order === null || order === void 0 ? void 0 : (_order$shipping_metho = order.shipping_methods[0]) === null || _order$shipping_metho === void 0 ? void 0 : _order$shipping_metho.price) || shipping_total, currencyCode), " ").concat(currencyCode),
+                shipping_total_inc: "".concat(this.humanPrice_((order === null || order === void 0 || (_order$shipping_metho = order.shipping_methods[0]) === null || _order$shipping_metho === void 0 ? void 0 : _order$shipping_metho.price) || shipping_total, currencyCode), " ").concat(currencyCode),
                 total: "".concat(this.humanPrice_(total, currencyCode), " ").concat(currencyCode)
               }));
             case 21:
@@ -1078,6 +1072,11 @@ var PostmarkService = /*#__PURE__*/function (_NotificationService) {
   }, {
     key: "customerPasswordResetData",
     value: function customerPasswordResetData(data) {
+      return data;
+    }
+  }, {
+    key: "customContactUsData",
+    value: function customContactUsData(data) {
       return data;
     }
   }, {
@@ -1107,7 +1106,7 @@ var PostmarkService = /*#__PURE__*/function (_NotificationService) {
   }, {
     key: "extractLocale",
     value: function () {
-      var _extractLocale = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee17(fromOrder) {
+      var _extractLocale = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee17(fromOrder) {
         var cart;
         return _regeneratorRuntime().wrap(function _callee17$(_context19) {
           while (1) switch (_context19.prev = _context19.next) {
@@ -1151,8 +1150,6 @@ var PostmarkService = /*#__PURE__*/function (_NotificationService) {
       return extractLocale;
     }()
   }]);
-  return PostmarkService;
 }(_medusaInterfaces.NotificationService);
 _defineProperty(PostmarkService, "identifier", "postmark");
-var _default = PostmarkService;
-exports["default"] = _default;
+var _default = exports["default"] = PostmarkService;

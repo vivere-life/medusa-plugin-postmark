@@ -7,13 +7,12 @@ exports["default"] = void 0;
 var _express = require("express");
 var _bodyParser = _interopRequireDefault(require("body-parser"));
 var _middleware = _interopRequireDefault(require("../middleware"));
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+function _interopRequireDefault(e) { return e && e.__esModule ? e : { "default": e }; }
 var route = (0, _express.Router)();
-var _default = function _default(app) {
+var _default = exports["default"] = function _default(app) {
   app.use("/postmark", route);
   route.post("/send", _bodyParser["default"].raw({
     type: "application/json"
   }), _middleware["default"].wrap(require("./send-email")["default"]));
   return app;
 };
-exports["default"] = _default;

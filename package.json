@@ -22,7 +22,6 @@
   },
   "scripts": {
     "build": "babel src --out-dir . --ignore '**/__tests__','**/__mocks__'",
-    "prepare": "npm run build",
     "watch": "babel -w src --out-dir . --ignore **/__tests__"
   },
   "peerDependencies": {

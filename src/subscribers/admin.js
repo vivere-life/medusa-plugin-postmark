@@ -12,3 +12,5 @@ class AdminSubscriber {
     });
   }
 }
+
+export default AdminSubscriber;

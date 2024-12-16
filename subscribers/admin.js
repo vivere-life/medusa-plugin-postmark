@@ -23,15 +23,18 @@ var AdminSubscriber = /*#__PURE__*/_createClass(function AdminSubscriber(_ref) {
   this.eventBus_ = eventBusService;
   this.eventBus_.subscribe('invite.created', /*#__PURE__*/function () {
     var _ref2 = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee(data) {
+      var id, token, email;
       return _regeneratorRuntime().wrap(function _callee$(_context) {
         while (1) switch (_context.prev = _context.next) {
           case 0:
-            console.log('AdminSubscriber: invite.created', data);
+            id = data.id, token = data.token, email = data.user_email;
             _context.next = 3;
-            return _this.postmarkService_.sendNotification('invite.created', data, null);
+            return _this.postmarkService_.sendNotification('invite.created', {
+              email: email,
+              id: id,
+              token: token
+            }, null);
           case 3:
-            console.log('AdminSubscriber: invite.created sent');
-          case 4:
           case "end":
             return _context.stop();
         }

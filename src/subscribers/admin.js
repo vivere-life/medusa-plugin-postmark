@@ -4,14 +4,16 @@ class AdminSubscriber {
     this.eventBus_ = eventBusService;
 
     this.eventBus_.subscribe('invite.created', async (data) => {
-      console.log('AdminSubscriber: invite.created', data);
+      const { id, token, user_email: email } = data;
       await this.postmarkService_.sendNotification(
         'invite.created',
-        data,
+        {
+          email,
+          id,
+          token,
+        },
         null
       );
-
-      console.log('AdminSubscriber: invite.created sent');
     });
   }
 }

@@ -96,7 +96,7 @@ var PostmarkService = /*#__PURE__*/function (_NotificationService) {
               }
               return _context5.abrupt("return");
             case 2:
-              console.log("Getting abandoned carts");
+              console.log('Getting abandoned carts');
               options = (_this$options_4 = this.options_) === null || _this$options_4 === void 0 ? void 0 : _this$options_4.abandoned_cart;
               now = new Date();
               firstCheck = new Date(now.getTime() - parseInt(options === null || options === void 0 || (_options$first = options.first) === null || _options$first === void 0 ? void 0 : _options$first.delay) * 60 * 60 * 1000);
@@ -110,7 +110,7 @@ var PostmarkService = /*#__PURE__*/function (_NotificationService) {
               });
             case 12:
               carts = _context5.sent;
-              console.log("Checking carts");
+              console.log('Checking carts');
               abandonedCarts = [];
               _iterator = _createForOfIteratorHelper(carts);
               _context5.prev = 16;
@@ -136,7 +136,7 @@ var PostmarkService = /*#__PURE__*/function (_NotificationService) {
             case 30:
               _context5.next = 32;
               return this.cartService_.retrieve(cart.id, {
-                relations: ["items", "shipping_address", "region"]
+                relations: ['items', 'shipping_address', 'region']
               });
             case 32:
               cartData = _context5.sent;
@@ -222,7 +222,7 @@ var PostmarkService = /*#__PURE__*/function (_NotificationService) {
                         console.error(error);
                         return {
                           to: sendOptions.to,
-                          status: "failed",
+                          status: 'failed',
                           data: sendOptions
                         };
                       });
@@ -255,7 +255,7 @@ var PostmarkService = /*#__PURE__*/function (_NotificationService) {
                         console.error(error);
                         return {
                           to: sendOptions.to,
-                          status: "failed",
+                          status: 'failed',
                           data: sendOptions
                         };
                       });
@@ -288,7 +288,7 @@ var PostmarkService = /*#__PURE__*/function (_NotificationService) {
                         console.error(error);
                         return {
                           to: sendOptions.to,
-                          status: "failed",
+                          status: 'failed',
                           data: sendOptions
                         };
                       });
@@ -368,8 +368,8 @@ var PostmarkService = /*#__PURE__*/function (_NotificationService) {
                     case 3:
                       _context7.next = 5;
                       return _this3.orderService_.retrieve(order.id, {
-                        select: ["id"],
-                        relations: ["customer", "items", "items.variant", "items.variant.product"]
+                        select: ['id'],
+                        relations: ['customer', 'items', 'items.variant', 'items.variant.product']
                       });
                     case 5:
                       orderData = _context7.sent;
@@ -389,9 +389,9 @@ var PostmarkService = /*#__PURE__*/function (_NotificationService) {
                         _context7.next = 15;
                         break;
                       }
-                      if (options.template.includes(",")) {
+                      if (options.template.includes(',')) {
                         // VERY simple setup for A/B testing
-                        options.template = options.template.split(",");
+                        options.template = options.template.split(',');
                         options.template = options.template[Math.floor(Math.random() * options.template.length)];
                       }
                       sendOptions = {
@@ -424,7 +424,7 @@ var PostmarkService = /*#__PURE__*/function (_NotificationService) {
                         console.error(error);
                         return {
                           to: sendOptions.to,
-                          status: "failed",
+                          status: 'failed',
                           data: sendOptions
                         };
                       });
@@ -482,7 +482,7 @@ var PostmarkService = /*#__PURE__*/function (_NotificationService) {
             case 0:
               attachments = [];
               _context9.t0 = event;
-              _context9.next = _context9.t0 === "user.password_reset" ? 4 : _context9.t0 === "swap.created" ? 16 : _context9.t0 === "order.return_requested" ? 16 : _context9.t0 === "order.placed" ? 41 : 54;
+              _context9.next = _context9.t0 === 'user.password_reset' ? 4 : _context9.t0 === 'swap.created' ? 16 : _context9.t0 === 'order.return_requested' ? 16 : _context9.t0 === 'order.placed' ? 41 : 54;
               break;
             case 4:
               _context9.prev = 4;
@@ -495,9 +495,9 @@ var PostmarkService = /*#__PURE__*/function (_NotificationService) {
             case 8:
               base64 = _context9.sent;
               attachments.push({
-                name: "password-reset.pdf",
+                name: 'password-reset.pdf',
                 base64: base64,
-                type: "application/pdf"
+                type: 'application/pdf'
               });
             case 10:
               _context9.next = 15;
@@ -517,12 +517,12 @@ var PostmarkService = /*#__PURE__*/function (_NotificationService) {
               }
               provider = shipping_method.shipping_option.provider_id;
               _context9.next = 22;
-              return this.fulfillmentProviderService_.retrieveDocuments(provider, shipping_data, "label");
+              return this.fulfillmentProviderService_.retrieveDocuments(provider, shipping_data, 'label');
             case 22:
               lbl = _context9.sent;
               attachments = attachments.concat(lbl.map(function (d) {
                 return {
-                  name: "return-label.pdf",
+                  name: 'return-label.pdf',
                   base64: d.base_64,
                   type: d.type
                 };
@@ -545,9 +545,9 @@ var PostmarkService = /*#__PURE__*/function (_NotificationService) {
             case 33:
               _base = _context9.sent;
               attachments.push({
-                name: "invoice.pdf",
+                name: 'invoice.pdf',
                 base64: _base,
-                type: "application/pdf"
+                type: 'application/pdf'
               });
             case 35:
               _context9.next = 40;
@@ -569,9 +569,9 @@ var PostmarkService = /*#__PURE__*/function (_NotificationService) {
             case 45:
               _base2 = _context9.sent;
               attachments.push({
-                name: "invoice.pdf",
+                name: 'invoice.pdf',
                 base64: _base2,
-                type: "application/pdf"
+                type: 'application/pdf'
               });
             case 47:
               _context9.next = 53;
@@ -579,7 +579,7 @@ var PostmarkService = /*#__PURE__*/function (_NotificationService) {
             case 49:
               _context9.prev = 49;
               _context9.t4 = _context9["catch"](41);
-              console.log("error ?", _context9.t4);
+              console.log('error ?', _context9.t4);
               console.error(_context9.t4);
             case 53:
               return _context9.abrupt("return", attachments);
@@ -604,7 +604,7 @@ var PostmarkService = /*#__PURE__*/function (_NotificationService) {
           while (1) switch (_context10.prev = _context10.next) {
             case 0:
               _context10.t0 = event;
-              _context10.next = _context10.t0 === "order.placed" ? 3 : _context10.t0 === "order.shipment_created" ? 4 : _context10.t0 === "order.canceled" ? 5 : _context10.t0 === "user.password_reset" ? 6 : _context10.t0 === "customer.password_reset" ? 7 : _context10.t0 === "custom.contact_us" ? 8 : _context10.t0 === "gift_card.created" ? 9 : 10;
+              _context10.next = _context10.t0 === 'order.placed' ? 3 : _context10.t0 === 'order.shipment_created' ? 4 : _context10.t0 === 'order.canceled' ? 5 : _context10.t0 === 'user.password_reset' ? 6 : _context10.t0 === 'invite.created' ? 7 : _context10.t0 === 'customer.password_reset' ? 8 : _context10.t0 === 'custom.contact_us' ? 9 : _context10.t0 === 'gift_card.created' ? 10 : 11;
               break;
             case 3:
               return _context10.abrupt("return", this.orderPlacedData(eventData, attachmentGenerator));
@@ -615,14 +615,16 @@ var PostmarkService = /*#__PURE__*/function (_NotificationService) {
             case 6:
               return _context10.abrupt("return", this.userPasswordResetData(eventData, attachmentGenerator));
             case 7:
-              return _context10.abrupt("return", this.customerPasswordResetData(eventData, attachmentGenerator));
+              return _context10.abrupt("return", this.inviteCreatedData(eventData, attachmentGenerator));
             case 8:
-              return _context10.abrupt("return", this.customContactUsData(eventData, attachmentGenerator));
+              return _context10.abrupt("return", this.customerPasswordResetData(eventData, attachmentGenerator));
             case 9:
-              return _context10.abrupt("return", this.giftCardData(eventData, attachmentGenerator));
+              return _context10.abrupt("return", this.customContactUsData(eventData, attachmentGenerator));
             case 10:
-              return _context10.abrupt("return", eventData);
+              return _context10.abrupt("return", this.giftCardData(eventData, attachmentGenerator));
             case 11:
+              return _context10.abrupt("return", eventData);
+            case 12:
             case "end":
               return _context10.stop();
           }
@@ -645,10 +647,10 @@ var PostmarkService = /*#__PURE__*/function (_NotificationService) {
               group = undefined;
               action = undefined;
               _context11.prev = 2;
-              event_ = event.split(".", 2);
+              event_ = event.split('.', 2);
               group = event_[0];
               action = event_[1];
-              if (!(typeof group === "undefined" || typeof action === "undefined" || this.options_.events[group] === undefined || this.options_.events[group][action] === undefined)) {
+              if (!(typeof group === 'undefined' || typeof action === 'undefined' || this.options_.events[group] === undefined || this.options_.events[group][action] === undefined)) {
                 _context11.next = 8;
                 break;
               }
@@ -671,7 +673,7 @@ var PostmarkService = /*#__PURE__*/function (_NotificationService) {
               return this.fetchAttachments(event, data, attachmentGenerator);
             case 20:
               attachments = _context11.sent;
-              if (data.locale && _typeof(templateId) === "object") templateId = templateId[data.locale] || Object.values(templateId)[0]; // Fallback to first template if locale is not found
+              if (data.locale && _typeof(templateId) === 'object') templateId = templateId[data.locale] || Object.values(templateId)[0]; // Fallback to first template if locale is not found
               if (!(templateId === null)) {
                 _context11.next = 24;
                 break;
@@ -699,14 +701,14 @@ var PostmarkService = /*#__PURE__*/function (_NotificationService) {
               return this.client_.sendEmailWithTemplate(sendOptions).then(function () {
                 return {
                   to: sendOptions.to,
-                  status: "sent",
+                  status: 'sent',
                   data: sendOptions
                 };
               })["catch"](function (error) {
                 console.error(error);
                 return {
                   to: sendOptions.to,
-                  status: "failed",
+                  status: 'failed',
                   data: sendOptions
                 };
               });
@@ -743,7 +745,7 @@ var PostmarkService = /*#__PURE__*/function (_NotificationService) {
                   content: a.base64,
                   filename: a.name,
                   type: a.type,
-                  disposition: "attachment",
+                  disposition: 'attachment',
                   contentId: a.name
                 };
               });
@@ -751,14 +753,14 @@ var PostmarkService = /*#__PURE__*/function (_NotificationService) {
               return this.client_.sendEmailWithTemplate(sendOptions).then(function () {
                 return {
                   to: sendOptions.To,
-                  status: "sent",
+                  status: 'sent',
                   data: sendOptions
                 };
               })["catch"](function (error) {
                 console.error(error);
                 return {
                   to: sendOptions.To,
-                  status: "failed",
+                  status: 'failed',
                   data: sendOptions
                 };
               });
@@ -815,14 +817,14 @@ var PostmarkService = /*#__PURE__*/function (_NotificationService) {
               id = _ref6.id, fulfillment_id = _ref6.fulfillment_id;
               _context14.next = 3;
               return this.orderService_.retrieve(id, {
-                select: ["shipping_total", "discount_total", "tax_total", "refunded_total", "gift_card_total", "subtotal", "total", "refundable_amount"],
-                relations: ["customer", "billing_address", "shipping_address", "discounts", "discounts.rule", "shipping_methods", "shipping_methods.shipping_option", "payments", "fulfillments", "returns", "gift_cards", "gift_card_transactions"]
+                select: ['shipping_total', 'discount_total', 'tax_total', 'refunded_total', 'gift_card_total', 'subtotal', 'total', 'refundable_amount'],
+                relations: ['customer', 'billing_address', 'shipping_address', 'discounts', 'discounts.rule', 'shipping_methods', 'shipping_methods.shipping_option', 'payments', 'fulfillments', 'returns', 'gift_cards', 'gift_card_transactions']
               });
             case 3:
               order = _context14.sent;
               _context14.next = 6;
               return this.fulfillmentService_.retrieve(fulfillment_id, {
-                relations: ["items", "tracking_links"]
+                relations: ['items', 'tracking_links']
               });
             case 6:
               shipment = _context14.sent;
@@ -837,7 +839,7 @@ var PostmarkService = /*#__PURE__*/function (_NotificationService) {
                 email: order.email,
                 fulfillment: shipment,
                 tracking_links: shipment.tracking_links,
-                tracking_number: shipment.tracking_numbers.join(", ")
+                tracking_number: shipment.tracking_numbers.join(', ')
               });
             case 11:
             case "end":
@@ -861,8 +863,8 @@ var PostmarkService = /*#__PURE__*/function (_NotificationService) {
               id = _ref7.id;
               _context15.next = 3;
               return this.orderService_.retrieve(id, {
-                select: ["shipping_total", "discount_total", "tax_total", "refunded_total", "gift_card_total", "subtotal", "total"],
-                relations: ["customer", "billing_address", "shipping_address", "discounts", "discounts.rule", "shipping_methods", "shipping_methods.shipping_option", "payments", "fulfillments", "returns", "gift_cards", "gift_card_transactions"]
+                select: ['shipping_total', 'discount_total', 'tax_total', 'refunded_total', 'gift_card_total', 'subtotal', 'total'],
+                relations: ['customer', 'billing_address', 'shipping_address', 'discounts', 'discounts.rule', 'shipping_methods', 'shipping_methods.shipping_option', 'payments', 'fulfillments', 'returns', 'gift_cards', 'gift_card_transactions']
               });
             case 3:
               order = _context15.sent;
@@ -876,7 +878,7 @@ var PostmarkService = /*#__PURE__*/function (_NotificationService) {
                   return {
                     is_giftcard: false,
                     code: discount.code,
-                    descriptor: "".concat(discount.rule.value).concat(discount.rule.type === "percentage" ? "%" : " ".concat(currencyCode))
+                    descriptor: "".concat(discount.rule.value).concat(discount.rule.type === 'percentage' ? '%' : " ".concat(currencyCode))
                   };
                 });
               }
@@ -932,12 +934,12 @@ var PostmarkService = /*#__PURE__*/function (_NotificationService) {
               id = _ref8.id;
               _context16.next = 3;
               return this.giftCardService.retrieve(id, {
-                relations: ["order"]
+                relations: ['order']
               });
             case 3:
               data = _context16.sent;
               return _context16.abrupt("return", _objectSpread(_objectSpread({}, data), {}, {
-                email: (_data$order$email = data.order.email) !== null && _data$order$email !== void 0 ? _data$order$email : ""
+                email: (_data$order$email = data.order.email) !== null && _data$order$email !== void 0 ? _data$order$email : ''
               }));
             case 5:
             case "end":
@@ -963,8 +965,8 @@ var PostmarkService = /*#__PURE__*/function (_NotificationService) {
               id = _ref9.id;
               _context18.next = 3;
               return this.orderService_.retrieve(id, {
-                select: ["shipping_total", "discount_total", "tax_total", "refunded_total", "gift_card_total", "subtotal", "total"],
-                relations: ["customer", "billing_address", "shipping_address", "discounts", "discounts.rule", "shipping_methods", "shipping_methods.shipping_option", "payments", "fulfillments", "returns", "gift_cards", "gift_card_transactions"]
+                select: ['shipping_total', 'discount_total', 'tax_total', 'refunded_total', 'gift_card_total', 'subtotal', 'total'],
+                relations: ['customer', 'billing_address', 'shipping_address', 'discounts', 'discounts.rule', 'shipping_methods', 'shipping_methods.shipping_option', 'payments', 'fulfillments', 'returns', 'gift_cards', 'gift_card_transactions']
               });
             case 3:
               order = _context18.sent;
@@ -1005,7 +1007,7 @@ var PostmarkService = /*#__PURE__*/function (_NotificationService) {
                   return {
                     is_giftcard: false,
                     code: discount.code,
-                    descriptor: "".concat(discount.rule.value).concat(discount.rule.type === "percentage" ? "%" : " ".concat(currencyCode))
+                    descriptor: "".concat(discount.rule.value).concat(discount.rule.type === 'percentage' ? '%' : " ".concat(currencyCode))
                   };
                 });
               }
@@ -1065,6 +1067,11 @@ var PostmarkService = /*#__PURE__*/function (_NotificationService) {
       return orderPlacedData;
     }()
   }, {
+    key: "inviteCreatedData",
+    value: function inviteCreatedData(data) {
+      return data;
+    }
+  }, {
     key: "userPasswordResetData",
     value: function userPasswordResetData(data) {
       return data;
@@ -1093,14 +1100,14 @@ var PostmarkService = /*#__PURE__*/function (_NotificationService) {
   }, {
     key: "humanPrice_",
     value: function humanPrice_(amount, currency) {
-      if (!amount) return "0.00";
+      if (!amount) return '0.00';
       var normalized = (0, _medusaCoreUtils.humanizeAmount)(amount, currency);
       return normalized.toFixed(_medusaCoreUtils.zeroDecimalCurrencies.includes(currency.toLowerCase()) ? 0 : 2);
     }
   }, {
     key: "normalizeThumbUrl_",
     value: function normalizeThumbUrl_(url) {
-      if (!url) return null;else if (url.startsWith("http")) return url;else if (url.startsWith("//")) return "https:".concat(url);
+      if (!url) return null;else if (url.startsWith('http')) return url;else if (url.startsWith('//')) return "https:".concat(url);
       return url;
     }
   }, {
@@ -1118,7 +1125,7 @@ var PostmarkService = /*#__PURE__*/function (_NotificationService) {
               _context19.prev = 1;
               _context19.next = 4;
               return this.cartService_.retrieve(fromOrder.cart_id, {
-                select: ["id", "context"]
+                select: ['id', 'context']
               });
             case 4:
               cart = _context19.sent;
@@ -1134,7 +1141,7 @@ var PostmarkService = /*#__PURE__*/function (_NotificationService) {
               _context19.prev = 9;
               _context19.t0 = _context19["catch"](1);
               console.log(_context19.t0);
-              console.warn("Failed to gather context for order");
+              console.warn('Failed to gather context for order');
               return _context19.abrupt("return", null);
             case 14:
               return _context19.abrupt("return", null);
@@ -1151,5 +1158,5 @@ var PostmarkService = /*#__PURE__*/function (_NotificationService) {
     }()
   }]);
 }(_medusaInterfaces.NotificationService);
-_defineProperty(PostmarkService, "identifier", "postmark");
+_defineProperty(PostmarkService, "identifier", 'postmark');
 var _default = exports["default"] = PostmarkService;
